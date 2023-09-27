@@ -21,14 +21,16 @@ export default function MainPage() {
               className={`${styles.editor_pick_slide} ${styles.one}`}
               style={{ transform: `translateX(${position}vw)` }}
             >
-              <h1 className={styles.content_title}>The Walchen Lake</h1>
-              <p className={styles.content_description}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                voluptate suscipit exercitationem. Non delectus magni
-                necessitatibus esse repudiandae assumenda natus optio odio
-                accusamus, fuga quae, enim quasi, saepe suscipit temporibus!
-              </p>
-              <button className={styles.content_button}>Read more</button>
+              <div className={styles.contents_container}>
+                <h1 className={styles.content_title}>The Walchen Lake</h1>
+                <p className={styles.content_description}>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
+                  voluptate suscipit exercitationem. Non delectus magni
+                  necessitatibus esse repudiandae assumenda natus optio odio
+                  accusamus, fuga quae, enim quasi, saepe suscipit temporibus!
+                </p>
+                <button className={styles.content_button}>Read more</button>
+              </div>
             </div>
           </div>
         </div>
