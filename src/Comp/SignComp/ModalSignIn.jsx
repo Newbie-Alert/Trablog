@@ -3,7 +3,11 @@ import styles from "./ModalSignIn.module.css";
 import axios from "axios";
 import { useState } from "react";
 
-export default function ModalSignIn({ tokenStorage }) {
+export default function ModalSignIn({
+  tokenStorage,
+  setIsLogined,
+  setSignModalToggle,
+}) {
   const [nickname, setNickName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,6 +19,10 @@ export default function ModalSignIn({ tokenStorage }) {
         password,
       })
       .then((data) => tokenStorage.saveToken(data.data.token, data.data.name))
+      .then(() => {
+        setIsLogined(true);
+        setSignModalToggle("");
+      })
 
       .catch((err) => console.log(err));
   }

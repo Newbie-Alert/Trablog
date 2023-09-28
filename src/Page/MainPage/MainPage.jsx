@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MainPage.module.css";
+import axios from "axios";
 
 export default function MainPage() {
   const [position, setPosition] = useState(0);
@@ -12,26 +13,39 @@ export default function MainPage() {
     }
   };
 
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/posts")
+      .then((data) => setPosts(data.data));
+  }, []);
+
   return (
     <>
       <div className={styles.main_container}>
         <div className={styles.editor_pick}>
           <div className={styles.editor_pick_carousel}>
-            <div
-              className={`${styles.editor_pick_slide} ${styles.one}`}
-              style={{ transform: `translateX(${position}vw)` }}
-            >
-              <div className={styles.contents_container}>
-                <h1 className={styles.content_title}>The Walchen Lake</h1>
-                <p className={styles.content_description}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                  voluptate suscipit exercitationem. Non delectus magni
-                  necessitatibus esse repudiandae assumenda natus optio odio
-                  accusamus, fuga quae, enim quasi, saepe suscipit temporibus!
-                </p>
-                <button className={styles.content_button}>Read more</button>
-              </div>
-            </div>
+            {posts?.map((post) => {
+              return (
+                <div
+                  key={post._id}
+                  className={`${styles.editor_pick_slide} ${styles.one}`}
+                  style={{
+                    transform: `translateX(${position}vw)`,
+                    backgroundImage: `url(${post.image})`,
+                  }}
+                >
+                  <div className={styles.contents_container}>
+                    <h1 className={styles.content_title}>{post.title}</h1>
+                    <p className={styles.content_description}>
+                      {post.description}
+                    </p>
+                    <button className={styles.content_button}>Read more</button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className={styles.button}>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import ModalSignIn from "../SignComp/ModalSignIn";
 import ModalSignUp from "../SignComp/ModalSignUp";
+import { Link } from "react-router-dom";
 
 export default function Header({ tokenStorage }) {
   // 로그인, 회원가입 모달 제어
@@ -22,6 +23,11 @@ export default function Header({ tokenStorage }) {
     setSignModalToggle("");
   };
 
+  const logOut = () => {
+    tokenStorage.clearToken();
+    setIsLogined(false);
+  };
+
   // USE_EFFECT
   useEffect(() => {
     const isToken = tokenStorage.getToken("token");
@@ -32,12 +38,17 @@ export default function Header({ tokenStorage }) {
     } else {
       setIsLogined(false);
     }
-  }, []);
+  }, [isLogined]);
 
   return (
     <div className={styles.header_container}>
       {signModalToggle === "signin" ? (
-        <ModalSignIn tokenStorage={tokenStorage} closeModal={closeModal} />
+        <ModalSignIn
+          tokenStorage={tokenStorage}
+          closeModal={closeModal}
+          setIsLogined={setIsLogined}
+          setSignModalToggle={setSignModalToggle}
+        />
       ) : null}
       {signModalToggle === "signup" ? (
         <ModalSignUp tokenStorage={tokenStorage} />
@@ -46,9 +57,13 @@ export default function Header({ tokenStorage }) {
       {isLogined === false ? (
         <Sign HandleModal={HandleModal} />
       ) : (
-        <User userProfile={userProfile} tokenStorage={tokenStorage} />
+        <User
+          userProfile={userProfile}
+          tokenStorage={tokenStorage}
+          logOut={logOut}
+        />
       )}
-      <Nav />
+      <Nav tokenStorage={tokenStorage} />
     </div>
   );
 }
@@ -67,7 +82,7 @@ function Sign({ HandleModal }) {
   );
 }
 
-function Nav() {
+function Nav({ tokenStorage }) {
   return (
     <div className={styles.nav_container}>
       <div className={styles.nav_lists}>
@@ -75,7 +90,9 @@ function Nav() {
           <li>Home</li>
           <li>Recommendation</li>
           <li>Explore</li>
-          <li>Help</li>
+          <Link to={`/myPosts/${tokenStorage.getName("name")}`}>
+            <li>MyPost</li>
+          </Link>
           <li>About Us</li>
         </ul>
       </div>
@@ -84,11 +101,11 @@ function Nav() {
   );
 }
 
-function User({ userProfile, tokenStorage }) {
+function User({ userProfile, logOut }) {
   return (
     <>
       <button
-        onClick={tokenStorage.clearToken}
+        onClick={logOut}
         className={styles.user_logout_button}
         id="logout"
       >
