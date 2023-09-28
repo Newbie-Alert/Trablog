@@ -1,4 +1,5 @@
-# [Server](https://github.com/Newbie-Alert/Trablog_server) 
+### 서버
+- [Server](https://github.com/Newbie-Alert/Trablog_server) 
 
 ### 1
 
