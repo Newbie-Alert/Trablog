@@ -31,7 +31,7 @@ export default function ModalSignIn({
     <div className={styles.modal_signup_container}>
       <form onSubmit={signIn} className={styles.modal_form}>
         <div className={styles.modal_nickname}>
-          <label htmlFor="nickname">ID</label>
+          <label htmlFor="nickname">ID:</label>
           <input
             onChange={(e) => setNickName(e.target.value)}
             value={nickname}
@@ -42,7 +42,7 @@ export default function ModalSignIn({
           />
         </div>
         <div className={styles.modal_password}>
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">password:</label>
           <input
             onChange={(e) => setPassword(e.target.value)}
             value={password}

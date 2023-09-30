@@ -22,7 +22,9 @@
 }
 
 .modal_nickname,
-.modal_password {
+.modal_password,
+.modal_name,
+.modal_email {
   display: flex;
   gap: 0.3rem;
 }

@@ -31,7 +31,7 @@ export default function ModalSignUp({ tokenStorage }) {
         className={styles.modal_form}
       >
         <div className={styles.modal_nickname}>
-          <label htmlFor="nickname">ID</label>
+          <label htmlFor="nickname">ID:</label>
           <input
             onChange={(e) => {
               setNickName(e.target.value);
@@ -44,7 +44,7 @@ export default function ModalSignUp({ tokenStorage }) {
           />
         </div>
         <div className={styles.modal_password}>
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">password:</label>
           <input
             onChange={(e) => {
               setPassword(e.target.value);
@@ -57,7 +57,7 @@ export default function ModalSignUp({ tokenStorage }) {
           />
         </div>
         <div className={styles.modal_name}>
-          <label htmlFor="name">name</label>
+          <label htmlFor="name">name:</label>
           <input
             onChange={(e) => {
               setName(e.target.value);
@@ -70,7 +70,7 @@ export default function ModalSignUp({ tokenStorage }) {
           />
         </div>
         <div className={styles.modal_email}>
-          <label htmlFor="email">email</label>
+          <label htmlFor="email">email:</label>
           <input
             onChange={(e) => {
               setEmail(e.target.value);

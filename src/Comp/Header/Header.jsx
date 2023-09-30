@@ -87,7 +87,9 @@ function Nav({ tokenStorage }) {
     <div className={styles.nav_container}>
       <div className={styles.nav_lists}>
         <ul>
-          <li>Home</li>
+          <Link to={"/"}>
+            <li>Home</li>
+          </Link>
           <li>Recommendation</li>
           <li>Explore</li>
           <Link to={`/myPosts/${tokenStorage.getName("name")}`}>

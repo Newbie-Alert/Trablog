@@ -47,14 +47,14 @@ export default function MainPage() {
               );
             })}
           </div>
-        </div>
-        <div className={styles.button}>
-          <button onClick={HandleCarousel} id="left">
-            {"<"}
-          </button>
-          <button onClick={HandleCarousel} id="right">
-            {">"}
-          </button>
+          <div className={styles.button}>
+            <button onClick={HandleCarousel} id="left">
+              {"<"}
+            </button>
+            <button onClick={HandleCarousel} id="right">
+              {">"}
+            </button>
+          </div>
         </div>
       </div>
     </>
